@@ -1,44 +1,33 @@
 {% extends 'base.html' %}
-{% block content %}
+{% load crispy_forms_tags %}
 
-{% if messages %}
-    {% for message in messages %}
-        <div id="message" class="container"></div>
-            <div class="alert alert-{{ message.tags }} alert-dismissible text-center" role="alert">
-                <button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span></button>
-                <strong>
-                    {% if message.level == DEFAULT_MESSAGE_LEVELS.ERROR %}
-                        Error:
-                    {% else %}
-                        {{ message.tags|title }}
-                    {% endif %}
-                </strong>
-                {{ message }}
-            </div>
-        </div>
-    {% endfor %}
-{% endif %}
+{% block content %}
 
     <h1>Registration Form</h1>
     <form action="{% url 'register' %}" method="post">
         {% csrf_token %}
-      <div class="form-group">
-        <label for="exampleInputEmail1">Name</label>
-        <input type="text" class="form-control" name="name"  placeholder="Enter name">
+        {{  form|crispy }}
 
-      </div><div class="form-group">
-        <label for="exampleInputEmail1">Phone Number</label>
-        <input type="text" class="form-control" name="phone" placeholder="Enter phone">
-
-      </div><div class="form-group">
-        <label for="exampleInputEmail1">Email address</label>
-        <input type="email" class="form-control" name="email" placeholder="Enter email">
-
-      </div>
-      <div class="form-group">
-        <label for="exampleInputPassword1">Password</label>
-        <input type="password" class="form-control" name="password" placeholder="Password">
-      </div>
+{#      <div class="form-group">#}
+{#        <label for="exampleInputEmail1">Name</label>#}
+{#        <input type="text" class="form-control" name="name"  placeholder="Enter name">#}
+{##}
+{#      </div#}
+{#      >#}
+{#        <div class="form-group">#}
+{#        <label for="exampleInputEmail1">Phone Number</label>#}
+{#        <input type="text" class="form-control" name="phone" placeholder="Enter phone">#}
+{##}
+{#      </div>#}
+{#        <div class="form-group">#}
+{#        <label for="exampleInputEmail1">Email address</label>#}
+{#        <input type="email" class="form-control" name="email" placeholder="Enter email">#}
+{##}
+{#      </div>#}
+{#      <div class="form-group">#}
+{#        <label for="exampleInputPassword1">Password</label>#}
+{#        <input type="password" class="form-control" name="password" placeholder="Password">#}
+{#      </div>#}
       <input type="submit" value="Register" class="btn btn-primary">
     </form>
 
